@@ -31,9 +31,23 @@ export async function POST() {
       },
     })
 
+    // Transform borrowHistory to match expected format
+    const userHistory = borrowHistory.map((record) => ({
+      title: record.book.title,
+      author: record.book.author,
+      genre: record.book.genre,
+    }))
+
+    // Transform availableBooks to match expected format
+    const booksForRecommendation = availableBooks.map((book) => ({
+      title: book.title,
+      author: book.author,
+      genre: book.genre,
+    }))
+
     const recommendations = await getBookRecommendations(
-      borrowHistory,
-      availableBooks
+      userHistory,
+      booksForRecommendation
     )
 
     return NextResponse.json(recommendations)
