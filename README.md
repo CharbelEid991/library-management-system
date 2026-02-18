@@ -2,6 +2,21 @@
 
 A modern, full-stack library management system built with Next.js, Supabase, Prisma, and Claude AI. Features include book management, check-in/check-out tracking, AI-powered search, smart recommendations, and role-based access control.
 
+## 🚀 Live Demo
+
+**Try it out:** [https://library-management-system-ten-blue.vercel.app/](https://library-management-system-ten-blue.vercel.app/)
+
+### Demo Credentials
+
+**Admin Login:**
+- Email: `admin@gmail.com`
+- Password: `password`
+
+You can log in as an admin to test full functionality including book management, user administration, and admin panel access.
+
+**User Registration:**
+- Feel free to register a new account to test the member experience, including browsing books, borrowing, and viewing personal borrowing history.
+
 ## Tech Stack
 
 - **Framework:** Next.js 16 (App Router)
