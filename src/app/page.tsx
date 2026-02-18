@@ -1,65 +1,88 @@
-import Image from "next/image";
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Navbar } from '@/components/layout/navbar'
+import { Sparkles, ArrowRight, Users, Search, BookOpen } from 'lucide-react'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+
+      <main className="flex-1 flex flex-col justify-center items-center bg-gradient-to-b from-primary/5 via-background to-background">
+        <div className="w-full max-w-7xl mx-auto px-4">
+          <section className="py-16 md:py-24 text-center space-y-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm text-primary font-medium">
+              <Sparkles className="h-3.5 w-3.5" />
+              Powered by AI
+            </div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              <span className="bg-gradient-to-r from-primary via-blue-500 to-blue-400 bg-clip-text text-transparent">
+                Modern Library
+              </span>
+              <br />
+              Management System
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Manage your library collection with AI-powered search, smart recommendations,
+              and seamless book tracking.
+            </p>
+            <div className="flex items-center justify-center gap-4 pt-2">
+              <Button asChild size="lg" className="shadow-lg shadow-primary/25 px-8">
+                <Link href="/signup">
+                  Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="px-8">
+                <Link href="/login">Sign In</Link>
+              </Button>
+            </div>
+          </section>
+
+          <section className="py-12 pb-20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="group text-center space-y-4 p-8 rounded-2xl border bg-card hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300">
+                <div className="flex justify-center">
+                  <div className="rounded-2xl bg-blue-500/10 p-4 group-hover:bg-blue-500/15 transition-colors">
+                    <Search className="h-7 w-7 text-blue-600" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold">AI-Powered Search</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Search using natural language. Find books by describing what you want to read.
+                </p>
+              </div>
+              <div className="group text-center space-y-4 p-8 rounded-2xl border bg-card hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300">
+                <div className="flex justify-center">
+                  <div className="rounded-2xl bg-violet-500/10 p-4 group-hover:bg-violet-500/15 transition-colors">
+                    <Sparkles className="h-7 w-7 text-violet-600" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold">Smart Recommendations</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Get personalized book suggestions based on your reading history.
+                </p>
+              </div>
+              <div className="group text-center space-y-4 p-8 rounded-2xl border bg-card hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300">
+                <div className="flex justify-center">
+                  <div className="rounded-2xl bg-emerald-500/10 p-4 group-hover:bg-emerald-500/15 transition-colors">
+                    <BookOpen className="h-7 w-7 text-emerald-600" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold">Easy Management</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Track checkouts, returns, and manage your entire catalog effortlessly.
+                </p>
+              </div>
+            </div>
+          </section>
         </div>
       </main>
+
+      <footer className="border-t py-6 mt-auto bg-muted/30">
+        <div className="container mx-auto text-center text-sm text-muted-foreground">
+          LibraryMS - Built with Next.js, Supabase, and Claude AI
+        </div>
+      </footer>
     </div>
-  );
+  )
 }

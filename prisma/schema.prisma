@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  admin
+  librarian
+  member
+}
+
+enum BorrowStatus {
+  checked_out
+  returned
+  overdue
+}
+
+model User {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  fullName   String   @map("full_name")
+  role       UserRole @default(member)
+  avatarUrl  String?  @map("avatar_url")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  borrowRecords BorrowRecord[]
+
+  @@map("users")
+}
+
+model Book {
+  id              String   @id @default(uuid())
+  title           String
+  author          String
+  isbn            String   @unique
+  description     String?
+  coverImage      String?  @map("cover_image")
+  genre           String
+  publisher       String?
+  publishedYear   Int?     @map("published_year")
+  pageCount       Int?     @map("page_count")
+  totalCopies     Int      @default(1) @map("total_copies")
+  availableCopies Int      @default(1) @map("available_copies")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  borrowRecords BorrowRecord[]
+
+  @@map("books")
+}
+
+model BorrowRecord {
+  id            String       @id @default(uuid())
+  userId        String       @map("user_id")
+  bookId        String       @map("book_id")
+  checkedOutAt  DateTime     @default(now()) @map("checked_out_at")
+  dueDate       DateTime     @map("due_date")
+  returnedAt    DateTime?    @map("returned_at")
+  status        BorrowStatus @default(checked_out)
+
+  user User @relation(fields: [userId], references: [id])
+  book Book @relation(fields: [bookId], references: [id])
+
+  @@map("borrow_records")
+}
